@@ -132,19 +132,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-数据结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+      <a class="article-title" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</a>
     </h1>
   
 
         
-        <a href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="archive-article-date">
+        <a href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
   	<time datetime="2020-03-29T12:11:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
 </a>
         
@@ -152,7 +152,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>ECMAScript中有5中数据类型<strong>Undefined**</strong>Null<strong><strong>Boolean</strong></strong>Number<strong>**String</strong><br>ES6新增<strong>Symbol</strong>类型 ES2020新增<strong>bigInt</strong><br>复杂数据类型<strong>Object</strong><br><strong>typeof</strong>是一个操作符而不是函数，所以使用typeof不需要用括号把需要判断类型的值阔起来</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">'string'</span> <span class="comment">// string</span></span><br><span class="line"><span class="keyword">typeof</span> [<span class="number">11</span>, <span class="number">222</span>]<span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125; <span class="comment">// function</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-Undefined"><a href="#1-Undefined" class="headerlink" title="1. Undefined"></a>1. Undefined</h3><p>只有一个值，即特殊的undefined。使用var声明变量但未对其加以初始化时，这个变量的值就是undefined。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age;</span><br><span class="line"><span class="keyword">typeof</span> age <span class="comment">// undefined</span></span><br><span class="line">age === <span class="literal">undefined</span> <span class="comment">// rue</span></span><br></pre></td></tr></table></figure>
+<p>包含undefined值的变量与尚未定义的变量是<strong>不一样的</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> message</span><br><span class="line"><span class="comment">// var name</span></span><br><span class="line">alert(message) <span class="comment">// undefined</span></span><br><span class="line">alert(name) <span class="comment">// VM1889:1 Uncaught ReferenceError: age is not defined</span></span><br></pre></td></tr></table></figure>
+<p><strong>typeof</strong>操作符对未初始化的变量返回undefined值，而对未声明变量执行typeof操作符同样也会返回undefined</p>
+<h3 id="2-Null"><a href="#2-Null" class="headerlink" title="2. Null"></a>2. Null</h3><p>是第二个只有一个值的数据类型null。表示一个空对象指针。<br>可以使用null来初始化将来用于保存对象的变量，这样，只要直接检查null值就可以知道相应的值就可以知道相应的变量是否已经保存了一个对象的引用。<br>undefined值派生自null，所以，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> == <span class="literal">undefined</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-Boolean"><a href="#3-Boolean" class="headerlink" title="3. Boolean"></a>3. Boolean</h3><p>只有两个字面值：<strong>true</strong>和<strong>false</strong>，Boolean类型的字面值<strong>区分大小写</strong>。使用Boolean()可以将一个值转为其对应的Boolean值。</p>
+<h3 id="4-Number"><a href="#4-Number" class="headerlink" title="4. Number"></a>4. Number</h3><p>使用IEEE754格式来表示<strong>整数</strong>和<strong>浮点数</strong></p>
+<ul>
+<li>10进制整数</li>
+<li>八进制（以8为基数）第一位必须是零（0），然后就是八进制数字序列（0-7），如果字面值重的数值超出了范围，前导零将被忽略，后面的数值将被当作十进制数值解析<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> octalNum1 = <span class="number">070</span> <span class="comment">// 八进制的56</span></span><br><span class="line"><span class="keyword">var</span> octalNum2 = <span class="number">079</span> <span class="comment">// 无效的八进制----解析为79</span></span><br><span class="line"><span class="keyword">var</span> octalNum3 = <span class="number">08</span> <span class="comment">//  无效的八进制----解析为08</span></span><br></pre></td></tr></table></figure></li>
+<li>十六进制（以16为进制）前两位必须是0x，后跟任何十六进制数字（0-9及A-F）字母A-F可大写，亦可小写。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hexNum1 = <span class="number">0xA</span> <span class="comment">// 十六进制的10</span></span><br><span class="line"><span class="keyword">var</span> hexNum2 = <span class="number">0x1f</span> <span class="comment">// 十六进制的31</span></span><br></pre></td></tr></table></figure>
+<h4 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h4>指该数值中必须包含一个小数点，并且小数点后面必须至少有一位数字。保存浮点数需要的内存空间是保存整数的两倍。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> floatNum1 = <span class="number">3.125e7</span> <span class="comment">// 32150000</span></span><br><span class="line"><span class="keyword">var</span> floatNum2 = <span class="number">3e-7</span> <span class="comment">// 0.0000003</span></span><br></pre></td></tr></table></figure>
+e表示法的实际含义就是<strong>3.125乘以10^7</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0.1</span> + <span class="number">0.2</span> == <span class="number">0.3</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于浮点数值计算会产生舍入误差的问题，这是使用基于IEEE754数值的浮点计算的通病。</p>
+</blockquote>
+<h4 id="数值范围"><a href="#数值范围" class="headerlink" title="数值范围"></a>数值范围</h4>Number.MIN_VALUE<strong>最小数值</strong>，这个值是5e-324<br>Number.MAX_VALUE<strong>最大数值</strong>，这个值是 1.7976931348623157e+308，如果超出这个范围，将自动换为<strong>Infinity</strong>，如果是负数，则转换成-Infinity（负无穷）。<br>使用IsFinite()来判断一个数是不是无穷大，参数位于最小和最大值之间时会返回<strong>true</strong><h4 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h4>即非数值（Not a Number）是一个特殊的值。用于表示一个本来要返回数值的操作数未返回数值的情况。在<strong>其他语言</strong>中，任何数值<strong>除以</strong>0都会导致错误，在<strong>ECMAScript</strong>中，任何数值除以0回返回<strong>NaN</strong>。<br>NaN包含两个特点</li>
+<li>任何涉及NaN的操作（例如NaN/10）都会返回NaN；</li>
+<li>NaN与<strong>任何值都不想等，包括NaN本身。</strong><br>使用isNaN()，确定这个参数是否“不是数值”。<blockquote>
+<p>isNaN接收到一个参数之后，会尝试将这个值转换为数值。某些不是数值的值会自动转换为数值，而任何不能转换为数值的值都会导致这个返回true。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="number">10</span>) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">'10'</span>) <span class="comment">// false 可以被转换为10</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="string">'blue'</span>) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">isNaN</span>(<span class="literal">true</span>) <span class="comment">// false // 可以转换成数字1</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>isNaN()也适用与对象，在基于对象调用isNaN()函数时，会首先调用对象valueOf()方法，然后确定该方法返回的值是否可以转换为数值。如果不能，则基于这个返回值再调用头String() 方法，再测试返回值。这个过程也是ECMAScript中内置函数和操作符的一般执行流程。</p>
+</blockquote>
+<h4 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h4></li>
+<li>Number()，可以用和人格数据类型。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>) <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span> || <span class="literal">false</span>) <span class="comment">// 1 || 0</span></span><br></pre></td></tr></table></figure></li>
+<li>parseInt() 字符串转换成数值</li>
+<li>parseFloat() 字符串转换成数值</li>
+</ul>
+
       
 
       
@@ -164,7 +198,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
         </p>
       
 
