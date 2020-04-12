@@ -132,6 +132,74 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-常用到的一些代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/12/%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81/">常用到的一些代码</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/12/%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2020-04-12T08:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>实现深拷贝<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> b = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringfy(a))</span><br></pre></td></tr></table></figure></li>
+<li>去掉小数部分<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">parseInt</span>(num)</span><br><span class="line">~~num</span><br><span class="line">num &gt;&gt; <span class="number">0</span></span><br><span class="line">num | <span class="number">0</span></span><br></pre></td></tr></table></figure></li>
+<li>实现值交换<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tem = a; a = b; b = tmp <span class="comment">// 传统方式，单需要临时变脸</span></span><br><span class="line">a ^= b; b ^= a; a ^b; <span class="comment">// 需要两个整数</span></span><br><span class="line">b = [a, a = b][<span class="number">0</span>] <span class="comment">// 借助数组</span></span><br><span class="line">[a, b] = [b, a] <span class="comment">// ES6,解构赋值</span></span><br><span class="line">a = a + b; b = a - b; a = a - b; <span class="comment">// 小学奥赛题 😊</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/12/%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
