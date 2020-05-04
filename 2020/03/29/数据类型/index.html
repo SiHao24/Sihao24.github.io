@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>数据类型 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ECMAScript中有5中数据类型Undefined**NullBooleanNumber**StringES6新增Symbol类型 ES2020新增bigInt复杂数据类型Objecttypeof是一个操作符而不是函数，所以使用typeof不需要用括号把需要判断类型的值阔起来 1234typeof null &#x2F;&#x2F; objecttypeof &#39;string&#39; &#x2F;&#x2F; stringtypeof [1">
+  <meta name="description" content="ECMAScript中有5中数据类型Undefined**NullBooleanNumber**StringES6新增Symbol类型 ES2020新增bigInt">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据类型">
 <meta property="og:url" content="http://yoursite.com/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="ECMAScript中有5中数据类型Undefined**NullBooleanNumber**StringES6新增Symbol类型 ES2020新增bigInt复杂数据类型Objecttypeof是一个操作符而不是函数，所以使用typeof不需要用括号把需要判断类型的值阔起来 1234typeof null &#x2F;&#x2F; objecttypeof &#39;string&#39; &#x2F;&#x2F; stringtypeof [1">
+<meta property="og:description" content="ECMAScript中有5中数据类型Undefined**NullBooleanNumber**StringES6新增Symbol类型 ES2020新增bigInt">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-03-29T12:11:32.000Z">
-<meta property="article:modified_time" content="2020-03-29T15:08:44.167Z">
+<meta property="article:modified_time" content="2020-05-04T08:29:56.063Z">
 <meta property="article:author" content="dreamer">
+<meta property="article:tag" content="javaScript数据类型">
 <meta name="twitter:card" content="summary">
   
   
@@ -154,7 +155,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ECMAScript中有5中数据类型<strong>Undefined**</strong>Null<strong><strong>Boolean</strong></strong>Number<strong>**String</strong><br>ES6新增<strong>Symbol</strong>类型 ES2020新增<strong>bigInt</strong><br>复杂数据类型<strong>Object</strong><br><strong>typeof</strong>是一个操作符而不是函数，所以使用typeof不需要用括号把需要判断类型的值阔起来</p>
+        <p>ECMAScript中有5中数据类型<strong>Undefined**</strong>Null<strong><strong>Boolean</strong></strong>Number<strong>**String</strong><br>ES6新增<strong>Symbol</strong>类型 ES2020新增<strong>bigInt</strong></p>
+<a id="more"></a>
+<p>复杂数据类型<strong>Object</strong><br><strong>typeof</strong>是一个操作符而不是函数，所以使用typeof不需要用括号把需要判断类型的值阔起来</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">'string'</span> <span class="comment">// string</span></span><br><span class="line"><span class="keyword">typeof</span> [<span class="number">11</span>, <span class="number">222</span>]<span class="comment">// object</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125; <span class="comment">// function</span></span><br></pre></td></tr></table></figure>
 <h3 id="1-Undefined"><a href="#1-Undefined" class="headerlink" title="1. Undefined"></a>1. Undefined</h3><p>只有一个值，即特殊的undefined。使用var声明变量但未对其加以初始化时，这个变量的值就是undefined。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> age;</span><br><span class="line"><span class="keyword">typeof</span> age <span class="comment">// undefined</span></span><br><span class="line">age === <span class="literal">undefined</span> <span class="comment">// rue</span></span><br></pre></td></tr></table></figure>
@@ -196,6 +199,17 @@ e表示法的实际含义就是<strong>3.125乘以10^7</strong><figure class="hi
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javaScript数据类型</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -400,6 +414,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javaScript数据类型</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
