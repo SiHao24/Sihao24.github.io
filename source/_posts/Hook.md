@@ -40,6 +40,7 @@ Hook是一些可以让你在函数组件里“钩入”React state及生命周�
 - 1.只能在**函数最外层**调用Hook 不能在循环、条件判断或者子函数中调用
 - 2.只能在React的函数组件中调用Hook
 Hook是一种复用状态逻辑的方式，它不复用state本身，事实上Hook的每次调用都有一个完全独立的state——可以在单个组件多次调用同一个自定义Hook
+## 使用State Hook
 class中形式：
 ```javascript
   class Example extends React.Component {
@@ -77,3 +78,102 @@ state只在组件首次渲染的时候被创建，在下一次重新渲染时，
   const serFruit = fruitStateVariable[1]
 ```
 this.setState中，更新state变量总是**替换**而不是合并它
+## 使用Effect Hook
+可以在函数组件中执行副作用操作（数据获取，设置订阅以及手动更改React组件中的DOM都属于副作用），可以吧useEffect看作是:componentDidMount,componentDidUpdate和componentWillUnMount这三个函数的组合。
+- useEffect做了什么？
+告诉React组件需要在渲染后执行某些操作，React会保存传递的参数（称之为“effect”），并且在执行DOM更新之后调用它。
+- 为什么在组件内部调用useEffect?
+将useEffect放在组件内部让我们可以在effect中直接访问state变量（或其他props）。不需要特殊的API来读取——已经保存在函数作用域中。Hook使用了Javascript的闭包机制，而不用在JavaScript已经提供了解决方案的情况下，还引入特定的React API。
+- useEffect会在每次渲染后都执行吗？
+默认情况下，在第一次渲染之后和每次更新之后都会执行。React保证了每次运行effect的同时，DOM已经更新完毕。    
+使用useEffect调度的effect**不会阻塞**浏览器更新屏幕
+#### 需要清除的effect
+- 使用class的实例
+```javascript
+  class FriendStatus extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = { isOnline: null, count: 0 }
+      this.handleStatusChange = this.handleStatusChange.bind(this)
+    }
+
+    componentDidMount() {
+      document.title = `You clicked ${this.state.count} times`
+      ChatAPI.subscribeToFriendStatus(
+        this.props.friend.id,
+        this.handleStatusChange
+      )
+    }
+
+    componentWillUnmount() {
+      ChatAPI.unsubscribeFromFriendStatus(
+        this.props.friend.id,
+        this.handleStatusChange
+      )
+    }
+
+    componentDidUpdate() {
+      document.title = `You clicked ${this.state.count} times`
+    }
+
+    handleStatusChange(status) {
+      this.setState({ isOnline: status.isOnline })
+    }
+
+    render() {
+      if (this.state.isOnline === null) {
+        return 'Loading...'
+      }
+
+      return this.state.isOnline ? 'Online' : 'OffLine'
+    }
+  }
+```
+- 使用Hook实例
+```javascript
+  import React, { useState, useEffect } from 'react'
+
+  function FriendStatus(props) {
+    const [isOnline, setIsOnline] = useState(null)
+
+    useEffect(() => {
+      function handleStatusChange(status) {
+        setIsOnline(status,isOnline)
+      }
+
+      ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange)
+      // Specify how to clean up after this effect
+
+      return function cleanUp() {
+        ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange)
+      }
+    })
+
+    if (isOnline === null) {
+      return 'Loading...'
+    }
+
+    return isOnline ? 'Online' : 'OffLine'
+  }
+```
+- 为什么要在effect中返回一个函数？
+effect可选的清除机制。每个effect都可以返回一个清除函数。
+- React何时清除effect？
+在组件卸载是执行清除操作。
+#### 使用Effect的提示
+会在调用一个新的effect之前对前一个effect进行清理
+- 通过跳过Effect进行性能优化
+每次渲染后都会执行清理或者执行effect可能会导致性能问题。在class组件中，可以通过componentDidUpdate中添加prevProps和prevState的比较逻辑解决
+```javascript
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.count !== this.state.count) {
+      document.title = `You clicked ${this.state.count} times`
+    }
+  }
+```
+如果某些特定值在两次重渲染之间没有发生变化，可以通知React跳过对effect的调用，只要传递数组作为useEffect的第二个可选参数即可。
+```javascript
+  useEffect(() => {
+    document.title = `You clicked ${this.state.count} times`
+  }, [count]) // 仅在count更新时更新
+```
