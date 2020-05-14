@@ -16,7 +16,7 @@
 <meta property="og:description" content="高阶组件(HOC)是React中用于复用组件的一种高级技巧。HOC自身不是ReactAPI的一部分，它是一种基于React的组合特性而形成的设计模式具体而言，高阶组件是参数为组件，返回值为新组件的函数，组件是将props转换成UI，而高阶组件是将组件转换成另一个组件。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-05-12T01:59:23.000Z">
-<meta property="article:modified_time" content="2020-05-12T02:34:04.261Z">
+<meta property="article:modified_time" content="2020-05-13T01:35:47.257Z">
 <meta property="article:author" content="dreamer">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
@@ -157,7 +157,14 @@
       
         <h3 id="高阶组件"><a href="#高阶组件" class="headerlink" title="高阶组件"></a>高阶组件</h3><p>(HOC)是React中用于复用组件的一种高级技巧。HOC自身不是ReactAPI的一部分，它是一种基于React的组合特性而形成的<strong>设计模式</strong><br>具体而言，<strong>高阶组件是参数为组件，返回值为新组件的函数</strong>，组件是将props转换成UI，而高阶组件是将组件转换成另一个组件。</p>
 <a id="more"></a>
-<p>需要一个抽象，允许在一个地方定义逻辑，并在许多组件之间共享它。这正是高阶组件擅长的地方。</p>
+<p>需要一个抽象，允许在一个地方定义逻辑，并在许多组件之间共享它。这正是高阶组件擅长的地方。<br>HOC不会修改传入的组件，也不会使用继承来复制其行为。相反，HOC通过<strong>将组件包装在容器组件来形成新组件</strong>。HOC是纯函数，没有副作用。<br>HOC不应该修改传入组件，而应该使用组合的方式，通过将组件包装在容器组件中实现功能:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">logProps</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    componentDidUpdare(preProps) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'Current Props: '</span>, <span class="keyword">this</span>.props)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'Previous Props: '</span>, preProps)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">WrappedComponent</span> &#123;<span class="attr">...this.props</span>&#125; /&gt;</span></span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>HOC与容器组件的相似之处：<br>容器组件担任分离将高层和底层关注的责任，有容器管理订阅和状态，并将prop传递给处理渲染UI。HOC使用容齐作为其实现的一部分，可以讲HOC视为参数化容器组件。  </li>
+<li>将不相关的props传递给被包裹的组件</li>
+<li>最大化可组合性</li>
+<li>包装显示名称以便轻松调试</li>
+</ul>
 
       
 
@@ -387,15 +394,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javaScript数据类型</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javaScript</a>
               </li>
              
               <li class="article-tag-list-item">
