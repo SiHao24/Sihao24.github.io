@@ -132,6 +132,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-类型判断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/06/%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/">类型判断</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/06/%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/" class="archive-article-date">
+  	<time datetime="2020-07-06T01:28:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><p>typeof对于原始类型来说，除了null都可以显示正确的类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// object null的数据类型被typeof解释为object</span></span><br><span class="line"><span class="keyword">typeof</span> [] <span class="comment">// object []数组的数据类型在typeof中被解释为object</span></span><br></pre></td></tr></table></figure>
+<h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><p>可以正确的判断对象的类型，内部机制是通过判断对象的原型链中是不是能找到类型的prototype<br>可以精准判断引用数据类型(Array, Function, Object)，而基本数据类型不能被instanceof精准判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> <span class="keyword">instanceof</span> <span class="built_in">Number</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">true</span> <span class="keyword">instanceof</span> <span class="built_in">Boolean</span> <span class="comment">// false</span></span><br><span class="line"><span class="string">'str'</span> <span class="keyword">instanceof</span> <span class="built_in">String</span> <span class="comment">// false</span></span><br><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line">&#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>instanceof运算符用来测试一个对象在其原型链中是否存在一个构造函数的prototype属性。其意思是判断对象是否是某一数据类型(如Array)的实例。判断一个对象是否是数据类型的实例。</p>
+</blockquote>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">2</span>).constructor === <span class="built_in">Number</span> <span class="comment">// true</span></span><br><span class="line">(<span class="literal">true</span>).constructor === <span class="built_in">Boolean</span> <span class="comment">// true</span></span><br><span class="line">(<span class="string">'str'</span>).constructor === <span class="built_in">String</span> <span class="comment">// true</span></span><br><span class="line">([]).constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;).constructor === <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line">(&#123;&#125;).constructor === <span class="built_in">Object</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里有一个坑，如果创建一个对象，更改它的原型，constructor就会变的不可靠了</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Fn.prototype = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Fn()</span><br><span class="line">f.constructor === Fn <span class="comment">// false</span></span><br><span class="line">f.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h2><p>使用Object对象的原型方法toString，使用call进行狸猫换太子，借用Object的toString方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="number">2</span>) <span class="comment">// "[object Number]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">false</span>) <span class="comment">// "[object Boolean]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="string">'str'</span>) <span class="comment">// "[object String]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call([]) <span class="comment">// "[object Array]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;) <span class="comment">// "[object Object]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>) <span class="comment">// "[object Null]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>) <span class="comment">// "[object Undefined]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;) <span class="comment">// "[object Function]"</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">类型判断</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/06/%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-知识点记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -234,7 +321,24 @@
     <div class="article-entry" itemprop="articleBody">
       
         <ul>
-<li>基本思想<br>利用原型让一个引用类型继承另一个引用类型的属性和方法。</li>
+<li>基本思想<br>ECMAScript只支持实现继承，而且其实现继承主要是依靠<strong>原型链</strong>来实现的。<h3 id="6-3-1-原型链"><a href="#6-3-1-原型链" class="headerlink" title="6.3.1  原型链"></a>6.3.1  原型链</h3>利用原型让一个引用类型继承另一个引用类型的属性和方法。<br>构造函数、原型和实例的关系：<br>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。<br>确定原型和实例的关系</li>
+</ul>
+<ul>
+<li>1、instanceof<br>实例与原型链中出现过的构造函数，就返回true</li>
+<li>2、isPrototypeOf()<br>只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型。<blockquote>
+<p>在通过原型链实现继承时，不能使用对象字面量创建原型方法，因为这样会重写原型链。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>原型链的问题：</li>
+</ul>
+<ul>
+<li>1、包含引用类型值的原型。引用类型值的原型属性会被所有实例共享。</li>
+<li>2、在创建子类型的实例时，不能向超类型的构造函数中传递参数（没有办法在不影响所有对象实例的情况下，给超类的构造函数传递参数）<h3 id="6-3-2-借用构造函数（伪造对象或经典继承）"><a href="#6-3-2-借用构造函数（伪造对象或经典继承）" class="headerlink" title="6.3.2 借用构造函数（伪造对象或经典继承）"></a>6.3.2 借用构造函数（伪造对象或经典继承）</h3><blockquote>
+<p>思想：在子类型构造函数的内部调用超类型构造函数。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'yellow'</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 继承了SuperType</span></span><br><span class="line">    SuperType.call(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance1 = <span class="keyword">new</span> SubType()</span><br><span class="line">instance.colors.push(<span class="string">'black'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance2 = <span class="keyword">new</span> SubType()</span><br><span class="line"></span><br><span class="line">instance1.colors  <span class="comment">// ['red', 'blue', 'yellow', 'black']</span></span><br><span class="line">instance2.colors <span class="comment">// ['red', 'blue', 'yellow']</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 
       
@@ -823,82 +927,6 @@
 
 
   
-    <article id="post-数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-03-29T12:11:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ECMAScript中有5中数据类型<strong>Undefined**</strong>Null<strong><strong>Boolean</strong></strong>Number<strong>**String</strong><br>ES6新增<strong>Symbol</strong>类型 ES2020新增<strong>bigInt</strong></p>
-        
-          <a class="article-more-a" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javaScript数据类型</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1008,15 +1036,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类型判断</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">javaScript数据类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">引用类型,Date类型</a>
+                <a href="javascript:void(0)" class="js-tag color3">继承</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">继承</a>
+                <a href="javascript:void(0)" class="js-tag color2">引用类型,Date类型</a>
               </li>
              
               <li class="article-tag-list-item">
