@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 继承 | Hexo</title>
+  <title>深入浅出React | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/%E7%BB%A7%E6%89%BF/index.html">
+  <meta name="description" content="useEffect():允许函数组件执行副作用操作useEffect可以接受两个参数，分别是回调函数和依赖数组 1useEffect(callback, [])  每一次渲染后都执行的副作用：传入回调函数，不传依赖数组1useEffect(callback) 仅在挂载阶段执行一次的副作用：传入回调函数，且这个函数的返回值不是一个函数，同时传入一个空数组1useEffect(() &#x3D;&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入浅出React">
+<meta property="og:url" content="http://yoursite.com/2020/11/09/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="useEffect():允许函数组件执行副作用操作useEffect可以接受两个参数，分别是回调函数和依赖数组 1useEffect(callback, [])  每一次渲染后都执行的副作用：传入回调函数，不传依赖数组1useEffect(callback) 仅在挂载阶段执行一次的副作用：传入回调函数，且这个函数的返回值不是一个函数，同时传入一个空数组1useEffect(() &#x3D;&amp;gt">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-09T11:48:27.000Z">
+<meta property="article:modified_time" content="2020-11-10T01:50:02.415Z">
 <meta property="article:author" content="dreamer">
+<meta property="article:tag" content="React, React Hook">
 <meta name="twitter:card" content="summary">
   
   
@@ -130,60 +135,182 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-深入浅出React" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/19/%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-05-19T15:24:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/%E7%BB%A7%E6%89%BF/">继承</a>
+    <h1 class="article-title" itemprop="name">
+      深入浅出React
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/11/09/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact/" class="archive-article-date">
+  	<time datetime="2020-11-09T11:48:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="useEffect-允许函数组件执行副作用操作"><a href="#useEffect-允许函数组件执行副作用操作" class="headerlink" title="useEffect():允许函数组件执行副作用操作"></a>useEffect():允许函数组件执行副作用操作</h3><p>useEffect可以接受两个参数，分别是<strong>回调函数</strong>和<strong>依赖数组</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useEffect(callback, [])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每一次渲染后都执行的副作用：传入回调函数，不传依赖数组<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useEffect(callback)</span><br></pre></td></tr></table></figure></li>
+<li>仅在挂载阶段执行一次的副作用：传入回调函数，<strong>且这个函数的返回值不是一个函数</strong>，同时传入一个空数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useEffect(() &#x3D;&gt; &#123;&#125;, [])</span><br></pre></td></tr></table></figure></li>
+<li>仅在挂载阶段和卸载阶段执行的副作用：传入回调函数，<strong>且这个函数的返回值是一个函数</strong>,同时传入一个空数组。假如回调函数本身记为A，返回的函数记为B，那么将在挂载阶段执行A，卸载阶段执行B。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 这里是A的业务逻辑</span></span><br><span class="line">  <span class="comment">// 返回一个函数记为B</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;, [])</span><br></pre></td></tr></table></figure>
+这种调用方式之所以会在卸载阶段去触发B函数的逻辑，是由useEffect的执行规则决定的：<strong>useEffect回调中返回的函数被称为“清除函数”</strong>,，让React识别到清除函数是，会在卸载时执行清除函数内部的逻辑。<strong>这个规律不会受第二个参数或者其他因素的影响，只要在useEffect中返回了一个函数，它就会被作为清除函数来处理</strong>。</li>
+<li>每一次渲染都触发，且卸载阶段也会被触发的副作用：传入回调函数，且这个函数的返回值是一个函数，同时不传第二个参数。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 这里是A的业务逻辑</span></span><br><span class="line">  <span class="comment">// 返回一个函数记为B</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>根据一定的依赖条件来触发副作用：传入回调函数（若返回值是一个函数，仍然仅影响卸载阶段对副作用的处理），同时<strong>传入一个非空的数组</strong><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 这是回调函数的业务逻辑</span></span><br><span class="line">  <span class="comment">// 若xxx是一个函数，则xxx会在组件卸载时触发</span></span><br><span class="line">&#125;, [num1, num2, num3])</span><br></pre></td></tr></table></figure>
+数组中的变量一般都是来源于组件本身的数据（props或者state）。如数组不为空，那么React就会在新的一次渲染后去对比前后两次的渲染，查看数组内容是否有变量发生了更新（只要有一个数组元素变了，就会被认为更新发生了），并在有更新的前提下触发useEffect中定义的副作用逻辑。<h3 id="Why-React-Hooks"><a href="#Why-React-Hooks" class="headerlink" title="Why React Hooks"></a>Why React Hooks</h3></li>
+<li>告别难以理解的Class；</li>
+<li>解决业务逻辑难以拆分的问题；</li>
+<li>使状态逻辑复用变得简单可行；</li>
+<li>函数组件从设计思想上来看，更加契合React的理念。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">继承</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">React, React Hook</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/11/09/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAReact/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/11/13/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          手写源码
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2020/07/18/%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">源码实现</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#useEffect-允许函数组件执行副作用操作"><span class="toc-number">1.</span> <span class="toc-text">useEffect():允许函数组件执行副作用操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Why-React-Hooks"><span class="toc-number">2.</span> <span class="toc-text">Why React Hooks</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -206,9 +333,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

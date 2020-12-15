@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 继承 | Hexo</title>
+  <title>面试题目收集 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/%E7%BB%A7%E6%89%BF/index.html">
+  <meta name="description" content="防抖——触发高频事件后n秒后函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间12345678910111213141516171819function debounce(fn) &amp;#123;  let timeout &#x3D; null  &#x2F;&#x2F; 创建一个标记用来存放定时器的返回值  return function () &amp;#123;    clearTimeout(timeout)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题目收集">
+<meta property="og:url" content="http://yoursite.com/2020/12/15/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%94%B6%E9%9B%86/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="防抖——触发高频事件后n秒后函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间12345678910111213141516171819function debounce(fn) &amp;#123;  let timeout &#x3D; null  &#x2F;&#x2F; 创建一个标记用来存放定时器的返回值  return function () &amp;#123;    clearTimeout(timeout)">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-15T01:57:29.000Z">
+<meta property="article:modified_time" content="2020-12-15T02:19:13.927Z">
 <meta property="article:author" content="dreamer">
+<meta property="article:tag" content="面试">
 <meta name="twitter:card" content="summary">
   
   
@@ -130,60 +135,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-面试题目收集" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/05/19/%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-05-19T15:24:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/05/19/%E7%BB%A7%E6%89%BF/">继承</a>
+    <h1 class="article-title" itemprop="name">
+      面试题目收集
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/12/15/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%94%B6%E9%9B%86/" class="archive-article-date">
+  	<time datetime="2020-12-15T01:57:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>防抖——触发高频事件后n秒后函数只会执行一次，如果n秒内高频事件再次被触发，则重新计算时间<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> timeout = <span class="literal">null</span></span><br><span class="line">  <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    clearTimeout(timeout)</span><br><span class="line">    <span class="comment">// 每当用户输入的时候把前一个setTimeout clear掉</span></span><br><span class="line">    timeout = setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// 然后又创建一个新的setTimeout，这样就能保证输入字符后的interval间隔内如果还有字符输入的话，就不会执行fn函数</span></span><br><span class="line">      fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)</span><br><span class="line">    &#125;, <span class="number">500</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'防抖成功'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> inp = <span class="built_in">document</span>.getElementById(<span class="string">'inp'</span>)</span><br><span class="line">inp.addEventListener(<span class="string">'input'</span>, debounce(sayHi))</span><br></pre></td></tr></table></figure></li>
+<li>节流——高频事件触发，但在n秒内只会执行一次，所以节流会稀释函数的执行频率<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> canRun = <span class="literal">true</span> <span class="comment">// 通过闭包保存一个标记</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!canRun) <span class="keyword">return</span></span><br><span class="line">    <span class="comment">// 在函数开头判断标记是否为true，不为true则return</span></span><br><span class="line">    canRun = <span class="literal">false</span> <span class="comment">// 立即设置为false</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">//  将外部传入的函数的执行放在setTimeout中</span></span><br><span class="line">      fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)</span><br><span class="line">      <span class="comment">// 最后在setTimeout执行完毕后再把标记设置为true（关键）表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头就被return掉</span></span><br><span class="line">      canRun = <span class="literal">true</span></span><br><span class="line">    &#125;, <span class="number">500</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e.target.innerWidth, e.target.innerHeight)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'resize'</span>, throttle(sayHi))</span><br></pre></td></tr></table></figure></li>
+<li>深度优先遍历——是指从某个顶点出发，首先访问这个顶点，然后找出刚才访问这个节点的第一个未被访问的邻节点，然后再以次邻节点为顶点，继续找他的下一个顶点进行访问。重复此步骤，直至所有节点都被访问完为止。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepTraversal</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nodes = []</span><br><span class="line">  <span class="keyword">if</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">    nodes.push(node)</span><br><span class="line">    <span class="keyword">let</span> childrens = node.children</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; childrens.length; i++) &#123;</span><br><span class="line">      deepTraversal(childrens[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 非递归写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deepTraversal</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nodes = []</span><br><span class="line">  <span class="keyword">if</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> statck = []</span><br><span class="line">    <span class="comment">// 同时存放将来要访问的节点</span></span><br><span class="line">    statck.push(node)</span><br><span class="line">    <span class="keyword">while</span>(statck.length !== <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> item = statck.pop()</span><br><span class="line">      <span class="comment">// 正在访问的节点</span></span><br><span class="line">      nodes.push(item)</span><br><span class="line">      <span class="keyword">let</span> childrens = item.children</span><br><span class="line">      <span class="comment">// 将现在访问点的节点的子节点存入stack，供将来访问</span></span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i = childrens.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) statck.push(childrens[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>广度优先遍历——是从某个顶点出发，首先访问这个顶点，然后找出刚访问这个节点所有未被访问的邻节点，访问完后在访问这些节点中第一个邻节点的所有节点，重复此方法，知道所有节点都被访问完为止<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">widetraversal</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nodes = [], i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (node !== <span class="literal">null</span>) &#123;</span><br><span class="line">    nodes.push(node)</span><br><span class="line">    widetraversal(node.nextElementSibling)</span><br><span class="line">    node = nodes[i++]</span><br><span class="line">    widetraversal(node.firstElementChild)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 广度优先遍历非递归写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">widetraversal</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> nodes = [], i = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(node !== <span class="literal">null</span>) &#123;</span><br><span class="line">    nodes.push(node)</span><br><span class="line">    node = nodes[i++]</span><br><span class="line">    <span class="keyword">let</span> childrens = node.children</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; childrens.length; i++) &#123;</span><br><span class="line">      nodes.push(childrens[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> nodes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>关于async/await,promise和setTimeout执行顺序<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'async1 start'</span>)</span><br><span class="line">  <span class="keyword">await</span> async2()</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'async1 end'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">async2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'async2'</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>)</span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123; <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>)&#125;, <span class="number">0</span>)</span><br><span class="line">async1()</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>)</span><br><span class="line">  resolve()</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>)</span><br><span class="line"><span class="comment">// 执行结果</span></span><br><span class="line"><span class="comment">// script start</span></span><br><span class="line"><span class="comment">// async1 start</span></span><br><span class="line"><span class="comment">// async2</span></span><br><span class="line"><span class="comment">// promise1</span></span><br><span class="line"><span class="comment">// script end</span></span><br><span class="line"><span class="comment">// async1 end</span></span><br><span class="line"><span class="comment">// promise2</span></span><br><span class="line"><span class="comment">// setTimeout</span></span><br></pre></td></tr></table></figure></li>
+<li>js EventLoop事件循环机制<br>javascript的事件分为两种，宏任务(macro-task)和微任务(micro-task)<ul>
+<li>宏任务：包括整体代码script,setTimeout, setInterval</li>
+<li>微任务：Promise.the(非new Promise),process.nextTick(node中)</li>
+<li>事件执行顺序：是先执行宏任务，然后执行微任务，任务同步/异步之分，同步的进入主线程，异步的进入Event Table并注册函数，异步事件完成后，会将回调函数放入Event Queue中(宏任务和微任务是不同的Event Queue),同步任务执行完成后，会从Event Queue中读取事件放入主线程执行，回调函数中可能还会包含不同的任务，因此会循环执行上述操作。<br>setTimeout并不是直接的把你的回调函数放进上述的异步队列中去，而是在定时器的时间到了之后，把回调函数放在执行异步队列中去。如果此时这个队列已经有很多任务了，那就排在他们的后面，这也就解释了为什么setTimeout为什么不能精准的执行的问题，setTimeout执行需要满足两个条件：<ul>
+<li>主进程必须是空闲的状态，如果时间到了，主进程不空闲也不会执行该函数</li>
+<li>这回调函数需要等到插入异步队列时前面的异步函数都执行完了，才会执行<br><a href="https://blog.csdn.net/yun_hou/article/details/88697954" target="_blank" rel="noopener">参考链接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">继承</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/12/15/%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%E6%94%B6%E9%9B%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/11/13/%E6%89%8B%E5%86%99%E6%BA%90%E7%A0%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手写源码</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -206,9 +326,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
