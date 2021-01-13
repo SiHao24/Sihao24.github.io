@@ -132,6 +132,179 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/19/%E7%BB%A7%E6%89%BF/">继承</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/19/%E7%BB%A7%E6%89%BF/" class="archive-article-date">
+  	<time datetime="2020-05-19T15:24:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>基本思想<br>ECMAScript只支持实现继承，而且其实现继承主要是依靠<strong>原型链</strong>来实现的。<h3 id="6-3-1-原型链"><a href="#6-3-1-原型链" class="headerlink" title="6.3.1  原型链"></a>6.3.1  原型链</h3>利用原型让一个引用类型继承另一个引用类型的属性和方法。<br>构造函数、原型和实例的关系：<br>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。<br>确定原型和实例的关系</li>
+</ul>
+<ul>
+<li>1、instanceof<br>实例与原型链中出现过的构造函数，就返回true</li>
+<li>2、isPrototypeOf()<br>只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型。<blockquote>
+<p>在通过原型链实现继承时，不能使用对象字面量创建原型方法，因为这样会重写原型链。</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>原型链的问题：</li>
+</ul>
+<ul>
+<li>1、包含引用类型值的原型。引用类型值的原型属性会被所有实例共享。</li>
+<li>2、在创建子类型的实例时，不能向超类型的构造函数中传递参数（没有办法在不影响所有对象实例的情况下，给超类的构造函数传递参数）<h3 id="6-3-2-借用构造函数（伪造对象或经典继承）"><a href="#6-3-2-借用构造函数（伪造对象或经典继承）" class="headerlink" title="6.3.2 借用构造函数（伪造对象或经典继承）"></a>6.3.2 借用构造函数（伪造对象或经典继承）</h3><blockquote>
+<p>思想：在子类型构造函数的内部调用超类型构造函数。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'yellow'</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 继承了SuperType</span></span><br><span class="line">    SuperType.call(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance1 = <span class="keyword">new</span> SubType()</span><br><span class="line">instance.colors.push(<span class="string">'black'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance2 = <span class="keyword">new</span> SubType()</span><br><span class="line"></span><br><span class="line">instance1.colors  <span class="comment">// ['red', 'blue', 'yellow', 'black']</span></span><br><span class="line">instance2.colors <span class="comment">// ['red', 'blue', 'yellow']</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">继承</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/19/%E7%BB%A7%E6%89%BF/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="学习React Hook-Hook" class="article article-type-学习React Hook  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/14/Hook/">Hook</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/14/Hook/" class="archive-article-date">
+  	<time datetime="2020-05-14T08:39:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Hook简介"><a href="#Hook简介" class="headerlink" title="Hook简介"></a>Hook简介</h2><p>React16.8新特性,可以再不编写class的情况下使用state以及其他的React特性。</p>
+<ul>
+<li>完全可选</li>
+<li>100%向后兼容</li>
+<li>现在可用</li></ul>
+        
+          <a class="article-more-a" href="/2020/05/14/Hook/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React Hook</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/14/Hook/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-创建对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -821,6 +994,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React Hook</a>
               </li>
              
@@ -845,6 +1022,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">React, React Hook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
@@ -853,11 +1034,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">React, React Hook</a>
+                <a href="javascript:void(0)" class="js-tag color2">引用类型,Date类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">引用类型,Date类型</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -869,15 +1050,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript 对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
             
             <div class="clearfix"></div>

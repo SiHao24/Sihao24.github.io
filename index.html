@@ -132,6 +132,164 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-算法收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/12/%E7%AE%97%E6%B3%95%E6%94%B6%E9%9B%86/">算法收集</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/12/%E7%AE%97%E6%B3%95%E6%94%B6%E9%9B%86/" class="archive-article-date">
+  	<time datetime="2021-01-12T15:01:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>1、统计字符串中出现次数最多的字符<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'啊啊啊你你你你你你你你你么在么在么在么在么在么在么在么在么在你你你你你你你你你你你你你你啊啊啊啊啊啊啊啊啊啊啊'</span></span><br><span class="line"><span class="keyword">const</span> len = str.length</span><br><span class="line"><span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">  <span class="keyword">const</span> strItem = str[i]</span><br><span class="line">  <span class="keyword">if</span> (obj.hasOwnProperty(strItem)) &#123;</span><br><span class="line">    obj[strItem]++</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    obj[strItem] = <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'obj: '</span>, obj)</span><br><span class="line"><span class="keyword">let</span> maxCount = <span class="number">0</span>, maxChart = <span class="number">-1</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> key <span class="keyword">in</span> obj) &#123;</span><br><span class="line">  <span class="keyword">if</span> (obj[key] &gt; maxCount) &#123;</span><br><span class="line">    maxCount = obj[key]</span><br><span class="line">    maxChart = key</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`出现次数最多的字符是: <span class="subst">$&#123;maxChart&#125;</span>, 出现了<span class="subst">$&#123;maxCount&#125;</span>`</span>)</span><br></pre></td></tr></table></figure></li>
+<li>2、实现一个函数</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> docs = [</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">words</span>: [<span class="string">'hello'</span>, <span class="string">'world'</span>] &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">words</span>: [<span class="string">'hello'</span>, <span class="string">'kids'</span>] &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">words</span>: [<span class="string">'zzzz'</span>, <span class="string">'hello'</span>] &#125;,</span><br><span class="line">  &#123; <span class="attr">id</span>: <span class="number">4</span>, <span class="attr">words</span>: [<span class="string">'world'</span>, <span class="string">'kids'</span>] &#125;,</span><br><span class="line">]</span><br><span class="line">find(docs, [<span class="string">'hello'</span>]) <span class="comment">// [1, 2, 3]</span></span><br><span class="line">find(docs, [<span class="string">'hello'</span>, <span class="string">'world'</span>]) <span class="comment">// 1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">find</span>(<span class="params">sources, keys</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> arr = []</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; sources.length; i++) &#123;</span><br><span class="line">    <span class="keyword">let</span> flag = <span class="literal">true</span></span><br><span class="line">    keys.forEach(<span class="function"><span class="params">kItem</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (!((sources[i].words || []).includes(kItem))) &#123;</span><br><span class="line">        flag = <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">      arr.push(sources[i].id) </span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/12/%E7%AE%97%E6%B3%95%E6%94%B6%E9%9B%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Vue知识点收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/11/Vue%E7%9F%A5%E8%AF%86%E7%82%B9%E6%94%B6%E9%9B%86/">Vue知识点收集</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/11/Vue%E7%9F%A5%E8%AF%86%E7%82%B9%E6%94%B6%E9%9B%86/" class="archive-article-date">
+  	<time datetime="2021-01-11T06:48:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>1、Vue-router路由有几种模式？区别是什么？<ul>
+<li>hash模式<br>1、url路径会出现”#”字符<br>2、hash值不包括在http请求中，它是交由前端路由处理，所以hash改变值是不会刷新页面，也不会向服务器发送请求<br>3、hash值的改变会触发hashchange事件</li>
+<li>history模式<br>1、整个地址重新加载，可以保存历史记录，方便前进后退<br>2、依赖H5 API和后台配置，没有后台配置的话，页面刷新时会出现404<br>3、提供pushState和replaceState方法</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/11/Vue%E7%9F%A5%E8%AF%86%E7%82%B9%E6%94%B6%E9%9B%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CSS知识点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -553,9 +711,12 @@
 </li>
 <li>5、手动实现Array.prototype.map方法<br>map()方法创建一个新数组，其结果是该数组中的每个元素都调用一个提供的函数后饭后的结果。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myMap</span>(<span class="params">arr, mapCallback</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 首先，检查传递的参数是否正确</span></span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(arr) || !arr.length || <span class="keyword">typeof</span> mapCallback !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line">    <span class="comment">// 每次调用此函数是，都会创建一个result数组，不改变原数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="comment">// 将mapCallback返回的结果push到result数组中</span></span><br><span class="line">      result.push(mapCallback(arr[i], i, arr))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>6、手动实现Array.proptype.filter方法<br>filter()方法创建一个新数组，其包含通过所提供的函数实现的测试的所有元素<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFilter</span>(<span class="params">arr, filterCallback</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(arr) || !arr.length || <span class="keyword">typeof</span> filterCallback !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 创建新数组，防止改变原数组</span></span><br><span class="line">    <span class="keyword">let</span> result = []</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">      <span class="comment">// 检查filterCallback的返回值是否是真值</span></span><br><span class="line">      <span class="keyword">if</span> (filterCallback(arr[i], i, arr)) &#123;</span><br><span class="line">        <span class="comment">// 如果条件为真，则将当前元素push到result中</span></span><br><span class="line">        result.push(arr[i])</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> result</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li>7、手动实现Array.prototype.reduce方法<br>reduce()方法对数组中的每个元素执行一个提供的reducer函数（升序执行），将其结果汇总为单个值返回。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myReduce</span>(<span class="params">arr, reduceCallback, initialValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(arr) || !arr.length || <span class="keyword">typeof</span> reduceCallback !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 如果缺少initialValue,使用数组的第一个参数作为initialValue</span></span><br><span class="line">    <span class="keyword">const</span> hasInitialValue  = initialValue !== <span class="literal">undefined</span></span><br><span class="line">    <span class="keyword">let</span> value = hasInitialValue ? initialValue : arr[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有传递initialValue，则索引从1开始，否则从0开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = hasInitialValue ? <span class="number">1</span> : <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">      value = reduceCallback(value, arr[i], i, arr)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<li>7、手动实现Array.prototype.reduce方法<br>reduce()方法对数组中的每个元素执行一个提供的reducer函数（升序执行），将其结果汇总为单个值返回。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myReduce</span>(<span class="params">arr, reduceCallback, initialValue</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(arr) || !arr.length || <span class="keyword">typeof</span> reduceCallback !== <span class="string">'function'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> []</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 如果缺少initialValue,使用数组的第一个参数作为initialValue</span></span><br><span class="line">    <span class="keyword">const</span> hasInitialValue  = initialValue !== <span class="literal">undefined</span></span><br><span class="line">    <span class="keyword">let</span> value = hasInitialValue ? initialValue : arr[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果有传递initialValue，则索引从1开始，否则从0开始</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = hasInitialValue ? <span class="number">1</span> : <span class="number">0</span>, len = arr.length; i &lt; len; i++) &#123;</span><br><span class="line">      value = reduceCallback(value, arr[i], i, arr)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> value</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>8、实现instanceof<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myInstanceof</span>(<span class="params">left, right</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 使用typeof来判断基础数据类型，如果是，直接返回false</span></span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">typeof</span> !== <span class="string">'object'</span> || left === <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment">// getPrototypeOf是Object对象自带的API，能够拿到参数的原型对象</span></span><br><span class="line">  <span class="keyword">let</span> proto = <span class="built_in">Object</span>.getPrototypeOf(left)</span><br><span class="line">  <span class="keyword">while</span>(<span class="literal">true</span>) &#123; <span class="comment">// 循环往下寻找，直到找到相同的原型对象</span></span><br><span class="line">    <span class="keyword">if</span> (proto === <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    <span class="keyword">if</span> (proto === right.prototype) <span class="keyword">return</span> <span class="literal">true</span> <span class="comment">// 找到相同原型对象，返回true</span></span><br><span class="line">    proto = <span class="built_in">Object</span>.getPrototypeOf(proto)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>1、instanceof可以准确判断复杂引用数据类型，但是不能正确判断基础数据类型</li>
+<li>2、typeof也存在弊端，可以判断基础数据类型（null除外），<strong>但是</strong>引用数据类型中，除了function类型外，其他的也无法判断</li>
+</ul>
 </li>
 </ul>
 
@@ -867,179 +1028,6 @@
 
 
   
-    <article id="post-继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/19/%E7%BB%A7%E6%89%BF/">继承</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/19/%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2020-05-19T15:24:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>基本思想<br>ECMAScript只支持实现继承，而且其实现继承主要是依靠<strong>原型链</strong>来实现的。<h3 id="6-3-1-原型链"><a href="#6-3-1-原型链" class="headerlink" title="6.3.1  原型链"></a>6.3.1  原型链</h3>利用原型让一个引用类型继承另一个引用类型的属性和方法。<br>构造函数、原型和实例的关系：<br>每个构造函数都有一个原型对象，原型对象都包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针。<br>确定原型和实例的关系</li>
-</ul>
-<ul>
-<li>1、instanceof<br>实例与原型链中出现过的构造函数，就返回true</li>
-<li>2、isPrototypeOf()<br>只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型。<blockquote>
-<p>在通过原型链实现继承时，不能使用对象字面量创建原型方法，因为这样会重写原型链。</p>
-</blockquote>
-</li>
-</ul>
-<ul>
-<li>原型链的问题：</li>
-</ul>
-<ul>
-<li>1、包含引用类型值的原型。引用类型值的原型属性会被所有实例共享。</li>
-<li>2、在创建子类型的实例时，不能向超类型的构造函数中传递参数（没有办法在不影响所有对象实例的情况下，给超类的构造函数传递参数）<h3 id="6-3-2-借用构造函数（伪造对象或经典继承）"><a href="#6-3-2-借用构造函数（伪造对象或经典继承）" class="headerlink" title="6.3.2 借用构造函数（伪造对象或经典继承）"></a>6.3.2 借用构造函数（伪造对象或经典继承）</h3><blockquote>
-<p>思想：在子类型构造函数的内部调用超类型构造函数。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SuperType</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.colors = [<span class="string">'red'</span>, <span class="string">'blue'</span>, <span class="string">'yellow'</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">SubType</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 继承了SuperType</span></span><br><span class="line">    SuperType.call(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance1 = <span class="keyword">new</span> SubType()</span><br><span class="line">instance.colors.push(<span class="string">'black'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance2 = <span class="keyword">new</span> SubType()</span><br><span class="line"></span><br><span class="line">instance1.colors  <span class="comment">// ['red', 'blue', 'yellow', 'black']</span></span><br><span class="line">instance2.colors <span class="comment">// ['red', 'blue', 'yellow']</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">继承</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/19/%E7%BB%A7%E6%89%BF/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="学习React Hook-Hook" class="article article-type-学习React Hook  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/14/Hook/">Hook</a>
-    </h1>
-  
-
-        
-        <a href="/2020/05/14/Hook/" class="archive-article-date">
-  	<time datetime="2020-05-14T08:39:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Hook简介"><a href="#Hook简介" class="headerlink" title="Hook简介"></a>Hook简介</h2><p>React16.8新特性,可以再不编写class的情况下使用state以及其他的React特性。</p>
-<ul>
-<li>完全可选</li>
-<li>100%向后兼容</li>
-<li>现在可用</li></ul>
-        
-          <a class="article-more-a" href="/2020/05/14/Hook/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React Hook</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/05/14/Hook/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1133,6 +1121,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React Hook</a>
               </li>
              
@@ -1157,6 +1149,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">React, React Hook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
@@ -1165,11 +1161,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">React, React Hook</a>
+                <a href="javascript:void(0)" class="js-tag color2">引用类型,Date类型</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">引用类型,Date类型</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1181,15 +1177,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript 对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">对象</a>
               </li>
             
             <div class="clearfix"></div>
