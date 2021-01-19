@@ -132,6 +132,174 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-类型判断" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/06/%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/">类型判断</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/06/%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/" class="archive-article-date">
+  	<time datetime="2020-07-06T01:28:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h2><p>typeof对于原始类型来说，除了null都可以显示正确的类型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> <span class="comment">// object null的数据类型被typeof解释为object</span></span><br><span class="line"><span class="keyword">typeof</span> [] <span class="comment">// object []数组的数据类型在typeof中被解释为object</span></span><br></pre></td></tr></table></figure>
+<h2 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h2><p>可以正确的判断对象的类型，内部机制是通过判断对象的原型链中是不是能找到类型的prototype<br>可以精准判断引用数据类型(Array, Function, Object)，而基本数据类型不能被instanceof精准判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span> <span class="keyword">instanceof</span> <span class="built_in">Number</span> <span class="comment">// false</span></span><br><span class="line"><span class="literal">true</span> <span class="keyword">instanceof</span> <span class="built_in">Boolean</span> <span class="comment">// false</span></span><br><span class="line"><span class="string">'str'</span> <span class="keyword">instanceof</span> <span class="built_in">String</span> <span class="comment">// false</span></span><br><span class="line">[] <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line">&#123;&#125; <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>instanceof运算符用来测试一个对象在其原型链中是否存在一个构造函数的prototype属性。其意思是判断对象是否是某一数据类型(如Array)的实例。判断一个对象是否是数据类型的实例。</p>
+</blockquote>
+<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">2</span>).constructor === <span class="built_in">Number</span> <span class="comment">// true</span></span><br><span class="line">(<span class="literal">true</span>).constructor === <span class="built_in">Boolean</span> <span class="comment">// true</span></span><br><span class="line">(<span class="string">'str'</span>).constructor === <span class="built_in">String</span> <span class="comment">// true</span></span><br><span class="line">([]).constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;).constructor === <span class="built_in">Function</span> <span class="comment">// true</span></span><br><span class="line">(&#123;&#125;).constructor === <span class="built_in">Object</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里有一个坑，如果创建一个对象，更改它的原型，constructor就会变的不可靠了</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Fn</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">Fn.prototype = <span class="keyword">new</span> <span class="built_in">Array</span>()</span><br><span class="line"><span class="keyword">var</span> f = <span class="keyword">new</span> Fn()</span><br><span class="line">f.constructor === Fn <span class="comment">// false</span></span><br><span class="line">f.constructor === <span class="built_in">Array</span> <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="Object-prototype-toString-call"><a href="#Object-prototype-toString-call" class="headerlink" title="Object.prototype.toString.call()"></a>Object.prototype.toString.call()</h2><p>使用Object对象的原型方法toString，使用call进行狸猫换太子，借用Object的toString方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="number">2</span>) <span class="comment">// "[object Number]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">false</span>) <span class="comment">// "[object Boolean]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="string">'str'</span>) <span class="comment">// "[object String]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call([]) <span class="comment">// "[object Array]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(&#123;&#125;) <span class="comment">// "[object Object]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">null</span>) <span class="comment">// "[object Null]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="literal">undefined</span>) <span class="comment">// "[object Undefined]"</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;) <span class="comment">// "[object Function]"</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">类型判断</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/06/%E7%B1%BB%E5%9E%8B%E5%88%A4%E6%96%AD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-知识点记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/23/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/">知识点记录</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/23/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/" class="archive-article-date">
+  	<time datetime="2020-05-23T09:17:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="package-json依赖配置"><a href="#package-json依赖配置" class="headerlink" title="package.json依赖配置"></a>package.json依赖配置</h3><ul>
+<li>dependencies <strong>项目运行</strong>所依赖的模块，开发环境和生产环境的依赖模块都可以配置到这里</li>
+<li>devDependencies <strong>开发环境</strong></li>
+<li>peerDependencies 指定正在开发的模块所依赖的版本以及用户安装的依赖包版本的兼容性</li>
+<li>bundledDependencies 值是数组，数组里可以制定一些模块，这些模块将在这个包发布时被<strong>一起打包</strong></li>
+<li>optionalDependencies 处理错误<br><img src="https://mmbiz.qpic.cn/mmbiz_png/aDoYvepE5x25LHcnFhscAGzJjQGEsF17pgdy7TSNHsw7mKD83APuSpAQiaFlkzsXwIfMhqnciaaNcAgANgVSDSIQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt></li></ul>
+        
+          <a class="article-more-a" href="/2020/05/23/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">package.json</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/23/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BD%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-继承" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -759,151 +927,9 @@
 
 
   
-    <article id="post-数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2020-03-29T12:11:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ECMAScript中有5中数据类型<strong>Undefined**</strong>Null<strong><strong>Boolean</strong></strong>Number<strong>**String</strong><br>ES6新增<strong>Symbol</strong>类型 ES2020新增<strong>bigInt</strong></p>
-        
-          <a class="article-more-a" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">javaScript数据类型</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/29/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-个人学习记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/03/29/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">个人学习记录</a>
-    </h1>
-  
-
-        
-        <a href="/2020/03/29/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2020-03-29T04:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>之后的每一篇记录都是关于<strong>javascript高级程序设计</strong>的基础知识，工作快两年了，感觉夯实js基础才是王道，so，打算重读<strong>javascript高级程序设计</strong>和<strong>javascript权威指南</strong>，来巩固自己的基础知识。   </p>
-<blockquote>
-<p>千万不要以一个人的现在，去判断他的未来。除非你发现，这个人的心已经死掉了，一个不死心的人，一个心中总是有梦想的人，不管他现在多么的卑微，他总是在前行的路上，他一定能走出很远的距离。<strong>by</strong>俞敏洪   </p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/03/29/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -994,11 +1020,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">React Hook</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">React Hook</a>
+                <a href="javascript:void(0)" class="js-tag color4">Vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1010,7 +1036,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">源码 javascript</a>
+                <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1018,7 +1044,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数组去重</a>
+                <a href="javascript:void(0)" class="js-tag color4">源码 javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1026,7 +1052,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+                <a href="javascript:void(0)" class="js-tag color5">数组去重</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1038,11 +1064,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类型判断</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类型判断</a>
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1051,10 +1085,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">对象</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
              
               <li class="article-tag-list-item">
