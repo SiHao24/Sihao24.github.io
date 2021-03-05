@@ -132,6 +132,153 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-引用类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/04/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/">第五章——引用类型</a>
+    </h1>
+  
+
+        
+        <a href="/2020/05/04/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
+  	<time datetime="2020-05-04T08:28:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="5-1-Object类型"><a href="#5-1-Object类型" class="headerlink" title="5.1 Object类型"></a>5.1 Object类型</h3><p>创建方法</p>
+<ul>
+<li>new关键字</li>
+<li>对象字面量<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建Object实例的方法</span></span><br><span class="line"><span class="comment">// 方法一 使用new操作符后跟Object构造函数</span></span><br><span class="line"><span class="keyword">var</span> personal = <span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">personal.name = <span class="string">'dreamer'</span></span><br><span class="line">personal.age = <span class="number">25</span></span><br><span class="line"><span class="comment">// 方法二 使用对象字面量</span></span><br><span class="line"><span class="keyword">var</span> personal = &#123;</span><br><span class="line">  name: <span class="string">'dreamer'</span>,</span><br><span class="line">  age: <span class="number">25</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+访问方式：<ul>
+<li>点表示法</li>
+<li>方括号表示法 可以通过变量来访问属性<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">personal.name = <span class="string">'dreamer'</span></span><br><span class="line">personal[<span class="string">'name'</span>] = <span class="string">'dreamer'</span></span><br></pre></td></tr></table></figure></li></ul></li></ul>
+        
+          <a class="article-more-a" href="/2020/05/04/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/05/04/%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-常用到的一些代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/12/%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81/">常用到的一些代码</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/12/%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2020-04-12T08:06:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="1-实现深拷贝"><a href="#1-实现深拷贝" class="headerlink" title="1. 实现深拷贝"></a>1. 实现深拷贝</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> b = <span class="built_in">JSON</span>.parse(<span class="built_in">JSON</span>.stringfy(a))</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/04/12/%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/12/%E5%B8%B8%E7%94%A8%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BB%A3%E7%A0%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -363,6 +510,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">javascript核心知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">CSS</a>
               </li>
              
@@ -383,6 +534,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">源码 javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">排序</a>
               </li>
              
@@ -391,7 +546,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">源码 javascript</a>
+                <a href="javascript:void(0)" class="js-tag color5">数组去重</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -399,7 +554,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数组去重</a>
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -411,23 +566,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">类型判断</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">面试</a>
+                <a href="javascript:void(0)" class="js-tag color4">javascript 闭包</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">继承</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">类型判断</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -436,6 +587,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">javascript 对象</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">面试</a>
               </li>
             
             <div class="clearfix"></div>
